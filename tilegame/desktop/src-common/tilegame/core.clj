@@ -9,8 +9,9 @@
 (defn- generate-blank-tile 
   "Generates a blank tile for the upper right hand corner"
   [] 
-  (assoc (texture "tile.png") 
-         :x (* (- board-size 1) tile-size), :y (* (- board-size 1) tile-size)))
+  (assoc (texture "blank_tile.png") 
+         :x (* (- board-size 1) tile-size), :y (* (- board-size 1) tile-size),
+         :width tile-size, :height tile-size))
 
 (defn- generate-tile 
   "Generates a tile of arbitrary index"
