@@ -1,6 +1,15 @@
 (ns tilegame.core
   (:require [play-clj.core :refer :all]
             [play-clj.g2d :refer :all]))
+(defn- generate-blank-tile [] 1)
+
+(defn- build-tile-vector 
+  "Creates a vector of tiles maps to use in game"
+  []
+  (loop [tile-vector [] counter count]
+    if (= count 9)
+    (conj counter {}))
+  )
 
 (defscreen main-screen
   :on-show
