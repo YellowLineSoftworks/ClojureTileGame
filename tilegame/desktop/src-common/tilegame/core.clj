@@ -4,8 +4,10 @@
 
 (declare generate-tile-x generate-tile-y)
 
-(def tile-size 50)
+(def screensz 600)
 (def board-size 3)
+(def tile-size (/ screensz board-size))
+
 (defn- generate-blank-tile 
   "Generates a blank tile for the upper right hand corner"
   [] 
