@@ -13,14 +13,16 @@
   [] 
   (assoc (texture "blank_tile.png") 
          :x (* (- board-size 1) tile-size), :y (* (- board-size 1) tile-size),
-         :width tile-size, :height tile-size))
+         :width tile-size, :height tile-size,
+         :location (- (* board-size board-size) 1), :blanktile? true))
 
 (defn- generate-tile 
   "Generates a tile of arbitrary index"
   [index] 
   (assoc (texture "tile.png") 
          :x (generate-tile-x index), :y (generate-tile-y index), 
-         :width tile-size, :height tile-size))
+         :width tile-size, :height tile-size,
+         :location (index), :blanktile? false))
 
 (defn- generate-tile-x 
   "Generates the x cord of a tile of arbitrary index"
@@ -46,7 +48,8 @@
   :on-show
   (fn [screen entities]
     (update! screen :renderer (stage))
-    (build-tile-board))
+    (let [board (build-tile-board)]
+      board))
   
   :on-render
   (fn [screen entities]
