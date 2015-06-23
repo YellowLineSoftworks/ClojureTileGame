@@ -32,6 +32,10 @@
   [index]
   (+ 0 (* (Math/floor (/ index board-size)) tile-size)))
 
+(defn- move-tile
+  "Does basically nothing for now."
+  [location] (println "Implement this you lazy ass")
+  )
 
 (defn- build-tile-board
   "Creates a vector of tiles maps to use in game"
@@ -40,7 +44,6 @@
     (if (= index (- (* board-size board-size) 1))
       (conj tile-vector (generate-blank-tile))
       (recur (conj tile-vector (generate-tile index)) (inc index)))))
- 
 
 (defscreen main-screen
   :on-show
@@ -51,7 +54,14 @@
   :on-render
   (fn [screen entities]
     (clear!)
-    (render! screen entities)))
+    (render! screen entities))
+  
+  :on-keydown
+  (fn [screen entities]
+    (cond 
+      (= (:key screen) (key-code :dpad-up)) 
+      (move-tile :up)))
+  )
 
 (defgame tilegame-game
   :on-create
